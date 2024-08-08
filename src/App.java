@@ -20,7 +20,7 @@ import javax.crypto.spec.IvParameterSpec;
 public class App {
     public void main(String[] args) throws Exception {
         String[] data = FileReader("data.txt");
-        String db = "jdbc:sqlserver://localhost:1433;trustServerCertificate=true;integratedSecurity=true";  //  jdbc:sqlserver://ip:port;trustServerCertificate=true;integratedSecurity=true    this for windows authentication access
+        String db = "jdbc:sqlserver://localhost:1433;databaseName=Dev;trustServerCertificate=true;integratedSecurity=true";  //  jdbc:sqlserver://ip:port;trustServerCertificate=true;integratedSecurity=true    this for windows authentication access
         Connection c = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -73,7 +73,7 @@ public class App {
         // }
     }
 
-    String[] FileReader(String FileName) throws FileNotFoundException{
+    static String[] FileReader(String FileName) throws FileNotFoundException{
         File file = new File(FileName);
         int LineCount = 0;
         String[] line;
@@ -94,7 +94,7 @@ public class App {
         return line;
     }
 
-    String HashSHA256(String data){
+    static String HashSHA256(String data){
         String EncryptedPassword = null;
         try{
         MessageDigest message = MessageDigest.getInstance("SHA-256");
