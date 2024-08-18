@@ -1,16 +1,39 @@
 import java.sql.Statement;
 import java.io.File;
 import java.io.FileNotFoundException;
+<<<<<<< HEAD
+import java.io.IOException;
+=======
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+>>>>>>> abfef5433f3b5481dc372e460adc71537dc6a93f
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+import java.sql.Statement;
+=======
 import java.sql.SQLException;
+>>>>>>> abfef5433f3b5481dc372e460adc71537dc6a93f
 import java.util.Base64;
 import java.util.Scanner;
+<<<<<<< HEAD
+=======
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileReader;
+
+>>>>>>> bcda1e2813d6c6603824965fd6d884698f5ed66d
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -18,6 +41,50 @@ import javax.crypto.spec.IvParameterSpec;
 
 public class App {
     public void main(String[] args) throws Exception {
+<<<<<<< HEAD
+        String[] data = FileReader("Data/data.txt");
+        // Connection c = null;
+        // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        // String db = "jdbc:sqlserver://localhost:1433;databaseName=Dev;trustServerCertificate=true;IntegratedSecurity=true;";
+        // try {
+        //     System.out.println("Connection to database...");
+        //     c = DriverManager.getConnection(db);
+        //     System.out.println("connected successfully!");
+        // } catch (Exception e) {
+        //     System.out.println("database connection error: "+e.getMessage());
+        // }
+        // Statement s = null;
+        // ResultSet rs = null;
+        // try {
+        //     s = c.createStatement();
+        //     rs = s.executeQuery("select * from Dev");
+        //     while (rs.next()) {
+        //         System.out.println("Query: "+rs.getString(2));
+        //     }
+        // } catch (Exception e) {
+        //     System.out.println("wrong Query entry");
+        // }
+        // System.out.println("closing the connection to database...");
+        // c.close();
+
+        
+
+        // KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+        // keyGen.init(256);
+        // SecretKey key = keyGen.generateKey();
+        // byte[] iv = new byte[16];
+        // SecureRandom random = new SecureRandom();
+        // random.nextBytes(iv);
+        // IvParameterSpec IvParam = new IvParameterSpec(iv);
+        // for (String plainText : data) {
+        //     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5padding");
+        //     cipher.init(cipher.ENCRYPT_MODE, key,IvParam);
+        //     byte[] cipherText = cipher.doFinal(plainText.getBytes());
+        //     System.out.println("The encrypted Text: "+cipherText);
+        //     cipher.init(cipher.DECRYPT_MODE, key,IvParam);
+        //     byte[] originText = cipher.doFinal(cipherText);
+        //     System.out.println("The origin Text : "+ originText);
+=======
         String[] data = FileReader("data.txt");
         String db = "jdbc:sqlserver://localhost:1433;databaseName=Dev;trustServerCertificate=true;integratedSecurity=true";  //  jdbc:sqlserver://ip:port;trustServerCertificate=true;integratedSecurity=true    this for windows authentication access
         Connection c = null;
@@ -72,6 +139,7 @@ public class App {
         //     cipher.init(Cipher.DECRYPT_MODE, secretKey,IvParameterSpec);
         //     byte[] decryptedText = cipher.doFinal(cipherText);
         //     System.out.println("Decrypted string: " + new String(decryptedText));
+>>>>>>> abfef5433f3b5481dc372e460adc71537dc6a93f
         // }
     }
 
@@ -95,6 +163,9 @@ public class App {
         }
         return line;
     }
+<<<<<<< HEAD
+}
+=======
 
     static String HashSHA256(String data){
         String EncryptedPassword = null;
@@ -108,3 +179,4 @@ public class App {
         return EncryptedPassword;
     }
 }
+>>>>>>> abfef5433f3b5481dc372e460adc71537dc6a93f
