@@ -17,30 +17,9 @@ import javax.crypto.spec.IvParameterSpec;
 public class App {
     public void main(String[] args) throws Exception {
         String[] data = FileReader("Data/data.txt");
-        // Connection c = null;
-        // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        // String db = "jdbc:sqlserver://localhost:1433;databaseName=Dev;trustServerCertificate=true;IntegratedSecurity=true;";
-        // try {
-        //     System.out.println("Connection to database...");
-        //     c = DriverManager.getConnection(db);
-        //     System.out.println("connected successfully!");
-        // } catch (Exception e) {
-        //     System.out.println("database connection error: "+e.getMessage());
-        // }
-        // Statement s = null;
-        // ResultSet rs = null;
-        // try {
-        //     s = c.createStatement();
-        //     rs = s.executeQuery("select * from Dev");
-        //     while (rs.next()) {
-        //         System.out.println("Query: "+rs.getString(2));
-        //     }
-        // } catch (Exception e) {
-        //     System.out.println("wrong Query entry");
-        // }
-        // System.out.println("closing the connection to database...");
-        // c.close();
-
+        Database database = new Database();
+        database.selectQuery();
+        
         
 
         // KeyGenerator keyGen = KeyGenerator.getInstance("AES");
