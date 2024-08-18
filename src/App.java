@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Scanner;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -31,7 +30,7 @@ public class App {
             System.out.println("Driver error: "+e.getMessage());
             System.exit(0);
         } catch (SQLException e) {
-            System.out.println("Database connection error: "+e.getMessage());
+            System.out.println("Database connection error: "+e.getMessage()) ;
             System.exit(0);
         }
         Statement selectStatement = c.createStatement();
@@ -40,8 +39,10 @@ public class App {
         try { 
             QueryResult = selectStatement.executeQuery("select * from Dev.dbo.Emp");
             while (QueryResult.next()) {
-                String EncryptedPassword = HashSHA256(QueryResult.getString("password"));
-                updateStatement.executeUpdate("update Dev.dbo.Emp set passwordEncrypted = '"+EncryptedPassword+"' where ID = "+QueryResult.getString("ID"));
+                if(QueryResult.getString("passwordEncrypted").isEmpty()){
+                    String EncryptedPassword = HashSHA256(QueryResult.getString("password"));
+                    updateStatement.executeUpdate("update Dev.dbo.Emp set passwordEncrypted = '"+EncryptedPassword+"' where ID = "+QueryResult.getString("ID"));
+                }
             }
             QueryResult = selectStatement.executeQuery("select * from Dev.dbo.Emp");
             System.out.println('\t'+QueryResult.getMetaData().getColumnLabel(1)+'\t'+QueryResult.getMetaData().getColumnLabel(2)+'\t'+QueryResult.getMetaData().getColumnName(4));
@@ -52,6 +53,7 @@ public class App {
             System.out.println("Query error: "+e.getMessage());
         }
         c.close();
+        
         // KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         // keyGen.init(128);
         // SecretKey secretKey = keyGen.generateKey();
@@ -73,7 +75,7 @@ public class App {
         // }
     }
 
-    static String[] FileReader(String FileName) throws FileNotFoundException{
+    String[] FileReader(String FileName) throws FileNotFoundException{
         File file = new File(FileName);
         int LineCount = 0;
         String[] line;
