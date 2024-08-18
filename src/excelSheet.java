@@ -11,9 +11,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class excelSheet {
     static FileInputStream inputFile = null;
+    String excelPath = null;
     void insert(ResultSet Query){
          try{
-            String excelPath = "C:/Users/karim/Desktop/test.xlsx";
+            excelPath = "C:/Users/karim/Desktop/test.xlsx";
             inputFile = new FileInputStream(excelPath);
             Workbook workbook = new XSSFWorkbook(inputFile);
             Sheet sheet = workbook.getSheetAt(0);
@@ -25,11 +26,19 @@ public class excelSheet {
             }
         } catch(IOException e){
             System.out.println("error opening excelsheet: "+e.getMessage());
+            try{
+                System.out.println("Creating ExcelSheet...");
+                FileOutputStream outputStream = new FileOutputStream(excelPath);
+                System.out.println("ExcelSheet created successfully");
+                outputStream.close();
+            }catch(IOException err){
+                System.out.println("error creating excelsheet: "+err.getMessage());
+            }
         }
     }
 
     void read(){
-        String excelPath = "C:/Users/karim/Desktop/test.xlsx";
+        excelPath = "C:/Users/karim/Desktop/test.xlsx";
         try{
             inputFile = new FileInputStream(excelPath);
             Workbook workbook = new XSSFWorkbook(inputFile);
