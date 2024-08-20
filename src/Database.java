@@ -42,4 +42,6 @@ public class Database {
             System.out.println("wrong Query entry"+e.getMessage());
         }
     }
+
+    
 }

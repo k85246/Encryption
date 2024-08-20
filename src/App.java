@@ -1,58 +1,64 @@
-import java.sql.Statement;
+import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Scanner;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileReader;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 public class App {
     public void main(String[] args) throws Exception {
-        String[] data = FileReader("Data/data.txt");
-        Database database = new Database();
-        database.selectQuery();
-        database.close();
-        // KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        // keyGen.init(128);
-        // SecretKey secretKey = keyGen.generateKey();
-        // byte[] key = secretKey.getEncoded();
-        // System.out.println("the key: "+Base64.getEncoder().encodeToString(key));
-        // byte[] IV = new byte[16];
-        // SecureRandom random = new SecureRandom();
-        // random.nextBytes(IV);
-        // IvParameterSpec IvParameterSpec = new IvParameterSpec(IV);
-        // Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        // for (String plainText : data) {
-        //     cipher.init(Cipher.ENCRYPT_MODE,secretKey,IvParameterSpec);
-        //     byte[] cipherText = cipher.doFinal(plainText.getBytes());
-        //     System.out.println("encrypted string: "+ Base64.getEncoder().encodeToString(cipherText));
-        //     cipher.init(Cipher.DECRYPT_MODE, secretKey,IvParameterSpec);
-        //     byte[] decryptedText = cipher.doFinal(cipherText);
-        //     System.out.println("Decrypted string: " + new String(decryptedText));
-        // }
+        //String[] data = FileReader("Data/data.txt");
+        
+         JFrame frame = new JFrame("Resizable Buttons");
+
+        // Set the frame's size
+        frame.setSize(400, 300);
+
+        // Specify what happens when the frame is closed
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create a SpringLayout
+        SpringLayout layout = new SpringLayout();
+        frame.setLayout(layout);
+
+        // Create buttons
+        JButton button1 = new JButton("Button 1");
+        JButton button2 = new JButton("Button 2");
+        JButton button3 = new JButton("Button 3");
+        JButton button4 = new JButton("Button 4");
+
+        // Add buttons to the frame
+        frame.add(button1);
+        frame.add(button2);
+        frame.add(button3);
+        frame.add(button4);
+
+        // Position the buttons
+        layout.putConstraint(SpringLayout.WEST, button1, 20, SpringLayout.WEST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.NORTH, button1, 20, SpringLayout.NORTH, frame.getContentPane());
+
+        layout.putConstraint(SpringLayout.WEST, button2, 20, SpringLayout.EAST, button1);
+        layout.putConstraint(SpringLayout.NORTH, button2, 20, SpringLayout.NORTH, frame.getContentPane());
+
+        layout.putConstraint(SpringLayout.WEST, button3, 20, SpringLayout.WEST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.NORTH, button3, 20, SpringLayout.SOUTH, button1);
+
+        layout.putConstraint(SpringLayout.WEST, button4, 20, SpringLayout.EAST, button3);
+        layout.putConstraint(SpringLayout.NORTH, button4, 20, SpringLayout.SOUTH, button2);
+
+        // Set the frame to be visible
+        frame.setVisible(true);
+    
     }
 
-    static String[] FileReader(String FileName) throws FileNotFoundException{
+    String[] FileReader(String FileName) throws FileNotFoundException{
         File file = new File(FileName);
         int LineCount = 0;
         String[] line;
@@ -73,7 +79,7 @@ public class App {
         return line;
     }
 
-    static String HashSHA256(String data){
+    String HashSHA256(String data){
         String EncryptedPassword = null;
         try{
         MessageDigest message = MessageDigest.getInstance("SHA-256");
@@ -85,32 +91,4 @@ public class App {
         return EncryptedPassword;
     }
 
-
-    String[] encryption(String[] data){
-        StringBuilder tempEncryptred = new StringBuilder();
-        String[] encryptedString = new String[data.length];
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.print("enter the shift Required: ");
-            int shift = input.nextInt();
-            int count = 0;
-            for (String line : data) {
-                for (char c : line.toCharArray()) {
-                    char encryptedChar;
-                    if(Character.isUpperCase(c)){
-                        encryptedChar =  (char) ((((int) c) + shift - 65) % 26 +65);
-                    }
-                    else{
-                        encryptedChar =  (char) ((((int) c) + shift - 97) % 26 +97);
-                    }
-                    tempEncryptred.append(encryptedChar);
-                }
-                encryptedString[count] = tempEncryptred.toString();
-                count++;
-                tempEncryptred.delete(0, tempEncryptred.length());
-            }
-        }catch(Exception e){
-            encryptedString = null;
-        }
-        return encryptedString;
-    }
 }
