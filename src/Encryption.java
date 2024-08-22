@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Scanner;
