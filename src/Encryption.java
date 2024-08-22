@@ -23,7 +23,7 @@ class cipher extends Encryption{
             System.out.print("enter the shift Required: ");
             shift = input.nextInt();
         } catch(Exception e){
-            System.out.println("");
+            System.out.println("Error in entering shift input: "+e.getMessage());
         }
         
     }    

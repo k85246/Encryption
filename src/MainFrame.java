@@ -39,9 +39,6 @@ public class MainFrame extends JFrame {
         mainPanel.add(westPanel,BorderLayout.WEST);
         add(mainPanel);
         setVisible(true);
-
-        
-        
     }
 
 
