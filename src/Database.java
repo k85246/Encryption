@@ -8,7 +8,10 @@ public class Database {
     private String db = "jdbc:sqlserver://localhost:1433;databaseName=Dev;trustServerCertificate=true;IntegratedSecurity=true;";
     private Connection c;
     private Statement selectStatement;
+    // TODO: config the updateStament
+    @SuppressWarnings("unused")
     private Statement updateStatemnet; 
+
     private ResultSet rs;
     
 

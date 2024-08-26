@@ -13,29 +13,38 @@ public class MainFrame extends JFrame {
 
         // Create a SpringLayout
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(1,2,20,20));
+        centerPanel.setPreferredSize(new Dimension(50, 50));
+        centerPanel.setLayout(new GridLayout(1,1,20,50));
         JPanel northPanel = new JPanel();
-        northPanel.setLayout(new GridLayout(1,1,20,20));
+        northPanel.setPreferredSize(new Dimension(50, 50));
+        northPanel.setLayout(new GridLayout(1,1,50,0));
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new GridLayout(1,1,20,20));
+        southPanel.setLayout(new GridLayout(1,2,20,0));
+        southPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         JPanel westPanel = new JPanel();
+        westPanel.setPreferredSize(new Dimension(50, 50));
         westPanel.setLayout(new GridLayout(1,1,20,20));
+        JPanel eastPanel = new JPanel();
+        eastPanel.setPreferredSize(new Dimension(50, 50));
+        eastPanel.setLayout(new GridLayout(1,1,20,20));
 
         // Create buttons
-        JButton button1 = new JButton("center 1");
-        JButton button12 = new JButton("center 1");
-        JButton button2 = new JButton("Button 2");
-        JButton button3 = new JButton("Button 3");
-        JButton button4 = new JButton("Button 4");
+        JButton runButton = new JButton("Run");
+        JPanel runPanel = new JPanel();
+        runPanel.add(runButton);
+        JButton clearButton = new JButton("Clear");
+        JPanel clearPanel = new JPanel();
+        clearPanel.add(clearButton);
 
-        centerPanel.add(button1);
-        centerPanel.add(button12);
-        northPanel.add(button2);
-        southPanel.add(button3);
-        westPanel.add(button4);
+        runButton.setPreferredSize(new Dimension(100, 50)); 
+        clearButton.setPreferredSize(new Dimension(200, 50));
+        
+        southPanel.add(runPanel);
+        southPanel.add(clearPanel);
         mainPanel.add(centerPanel,BorderLayout.CENTER);
         mainPanel.add(northPanel,BorderLayout.NORTH);
         mainPanel.add(southPanel,BorderLayout.SOUTH);
+        mainPanel.add(eastPanel,BorderLayout.EAST);
         mainPanel.add(westPanel,BorderLayout.WEST);
         add(mainPanel);
         setVisible(true);
