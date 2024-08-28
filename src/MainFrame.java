@@ -1,9 +1,18 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
-    void initialize(){
+    JButton runButton = new JButton("Run");
+    JButton clearButton = new JButton("Clear");
+    JTextArea text = new JTextArea();
+    
+    
+    MainFrame(){
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         setTitle("Main Frame");
@@ -11,41 +20,38 @@ public class MainFrame extends JFrame {
         setMinimumSize(new Dimension(400,500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create a SpringLayout
+
         JPanel centerPanel = new JPanel();
         centerPanel.setPreferredSize(new Dimension(50, 50));
         centerPanel.setLayout(new GridLayout(1,1,20,50));
-        JPanel northPanel = new JPanel();
-        northPanel.setPreferredSize(new Dimension(50, 50));
-        northPanel.setLayout(new GridLayout(1,1,50,0));
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new GridLayout(1,2,20,0));
         southPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        JPanel westPanel = new JPanel();
-        westPanel.setPreferredSize(new Dimension(50, 50));
-        westPanel.setLayout(new GridLayout(1,1,20,20));
-        JPanel eastPanel = new JPanel();
-        eastPanel.setPreferredSize(new Dimension(50, 50));
-        eastPanel.setLayout(new GridLayout(1,1,20,20));
-
-        // Create buttons
-        JButton runButton = new JButton("Run");
+        
         JPanel runPanel = new JPanel();
         runPanel.add(runButton);
-        JButton clearButton = new JButton("Clear");
         JPanel clearPanel = new JPanel();
         clearPanel.add(clearButton);
-
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void  actionPerformed(ActionEvent e){
+                text.setText("");
+            }
+        });
         runButton.setPreferredSize(new Dimension(100, 50)); 
-        clearButton.setPreferredSize(new Dimension(200, 50));
+        clearButton.setPreferredSize(new Dimension(100, 50));
+
+        JPanel textPanel = new JPanel();
+        textPanel.setBorder(BorderFactory.createEmptyBorder(300,0,0,0));
+        text.setLineWrap(true);
+        textPanel.add(text);
+        text.setPreferredSize(new Dimension(380,200));
+        centerPanel.add(textPanel);
         
         southPanel.add(runPanel);
         southPanel.add(clearPanel);
         mainPanel.add(centerPanel,BorderLayout.CENTER);
-        mainPanel.add(northPanel,BorderLayout.NORTH);
         mainPanel.add(southPanel,BorderLayout.SOUTH);
-        mainPanel.add(eastPanel,BorderLayout.EAST);
-        mainPanel.add(westPanel,BorderLayout.WEST);
         add(mainPanel);
         setVisible(true);
     }
