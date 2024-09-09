@@ -11,7 +11,6 @@ public class Database {
     // TODO: config the updateStament
     @SuppressWarnings("unused")
     private Statement updateStatemnet; 
-
     private ResultSet rs;
     
 

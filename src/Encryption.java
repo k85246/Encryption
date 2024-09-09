@@ -50,6 +50,8 @@ class cipher extends Encryption{
         return encryptedString;
     }
 
+}
+
 class AES extends Encryption{
 
     @Override
@@ -80,5 +82,4 @@ class AES extends Encryption{
         return a;
     }
     
-}
 }

@@ -12,7 +12,6 @@ public class App {
         //String[] data = FileReader("Data/data.txt");
         MainFrame myFrame = new MainFrame();
         myFrame.initialize();
-    
     }
 
     String[] FileReader(String FileName) throws FileNotFoundException{
