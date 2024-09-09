@@ -11,6 +11,7 @@ public class App {
     public void main(String[] args) throws Exception {
         //String[] data = FileReader("Data/data.txt");
         MainFrame myFrame = new MainFrame();
+    
         myFrame.initialize();
     }
 
